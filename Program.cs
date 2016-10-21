@@ -11,7 +11,7 @@ namespace ConsoleApplication
 
             while (next)
             {
-                Console.Write(">");
+                Print.PrintInlineMessage(">");
 
                 enter = Console.ReadLine();
 
@@ -29,7 +29,7 @@ namespace ConsoleApplication
                         break;
 
                     default:
-                        Console.WriteLine("Command not found");
+                        Print.PrintMessage("Command not found");
                         break;
                 }
 
