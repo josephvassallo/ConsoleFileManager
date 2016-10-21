@@ -82,5 +82,6 @@
 -r:"/home/joseph/.nuget/packages/System.Threading.Timer/4.0.1/ref/netstandard1.2/System.Threading.Timer.dll"
 -r:"/home/joseph/.nuget/packages/System.Xml.ReaderWriter/4.0.11/ref/netstandard1.3/System.Xml.ReaderWriter.dll"
 -r:"/home/joseph/.nuget/packages/System.Xml.XDocument/4.0.11/ref/netstandard1.3/System.Xml.XDocument.dll"
+"/home/joseph/VisualStudioCode/Projects/DotNetCore/ConsoleFileManager/Commands.cs"
 "/home/joseph/VisualStudioCode/Projects/DotNetCore/ConsoleFileManager/Program.cs"
 "/home/joseph/VisualStudioCode/Projects/DotNetCore/ConsoleFileManager/Print.cs"

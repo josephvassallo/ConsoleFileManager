@@ -14,8 +14,12 @@ namespace ConsoleApplication
             {
                 Print.PrintInlineMessage(">");
 
-                enter = Console.ReadLine();
-
+                #if (DEBUG)
+                    enter = "ls";
+                #else
+                    enter = Console.ReadLine();
+                #endif
+                
                 if (string.IsNullOrEmpty(enter))
                 { 
                     continue;
