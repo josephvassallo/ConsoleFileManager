@@ -1,2 +1,2 @@
 # ConsoleFileManager
-A simple implementation of a file manager using Dot Net Core and Visual Studio Code.
+A simple C# implementation of a File Manager using DotNetCore and VisualStudioCode.
