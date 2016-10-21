@@ -6,6 +6,7 @@ namespace ConsoleApplication
     {
         public static void Main(string[] args)
         {
+            Commands commands = new Commands();
             bool next = true;
             string enter = string.Empty;    
 
@@ -24,6 +25,10 @@ namespace ConsoleApplication
 
                 switch (enter)
                 {
+                    case "ls":
+                        commands.Ls();
+                        break;
+
                     case "exit":
                         next = false;
                         break;
