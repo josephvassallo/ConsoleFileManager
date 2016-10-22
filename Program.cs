@@ -1,10 +1,13 @@
-﻿namespace ConsoleApplication
+﻿using System.Collections.Generic;
+
+namespace ConsoleApplication
 {
     public class Program
     {
         public static void Main(string[] args)
         {
             Commands commands = new Commands();
+            List<string> parameters = new List<string>();
             bool next = true;
             string enter = string.Empty;    
 
@@ -13,7 +16,7 @@
                 Print.PrintInlineMessage(">");
 
                 #if (DEBUG)
-                    enter = "ls";
+                    enter = "ls -a";
                 #else
                     enter = Console.ReadLine();
                 #endif
@@ -25,10 +28,16 @@
 
                 enter = enter.ToLower();
 
+                parameters.AddRange(enter.Split(' '));
+
+                enter = parameters[0];
+
+                parameters.Remove(enter);
+
                 switch (enter)
                 {
                     case "ls":
-                        commands.Ls();
+                        commands.Ls(parameters);
                         break;
 
                     case "exit":
