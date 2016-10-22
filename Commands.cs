@@ -10,11 +10,11 @@ public class Commands
             List<string> directories = Utilities.GetListDirectories();
             foreach (string file in files)
             {
-                Print.PrintMessage(file);
+                Utilities.PrintFileName(file);
             }
             foreach (string directory in directories)
             {
-                Print.PrintMessage(directory);
+                Utilities.PrintDirectoryName(directory);
             }
             return;
         }
@@ -31,7 +31,7 @@ public class Commands
                         List<string> files = Utilities.GetListFiles();
                         foreach (string file in files)
                         {
-                            Print.PrintMessage(file);
+                            Utilities.PrintFileName(file);
                         }
                         break;
 
@@ -39,17 +39,17 @@ public class Commands
                         List<string> directories = Utilities.GetListDirectories();
                         foreach (string directory in directories)
                         {
-                            Print.PrintMessage(directory);
+                            Utilities.PrintDirectoryName(directory);
                         }
                         break;
 
                     default:
-                        Print.PrintWarningMessage("Parameter not found");
+                        Utilities.PrintWarningMessage("Parameter not found");
                         break;
                 }
                 return;
             }
-            if (parameter.Contains("\\"))
+            if (parameter.Contains("/"))
             {
                 if (Directory.Exists(parameter))
                 {
@@ -57,11 +57,11 @@ public class Commands
                     List<string> directories = Utilities.GetListDirectories(parameter);
                     foreach (string file in files)
                     {
-                        Print.PrintMessage(file);
+                        Utilities.PrintFileName(file);
                     }
                     foreach (string directory in directories)
                     {
-                        Print.PrintMessage(directory);
+                        Utilities.PrintDirectoryName(directory);
                     }
                 }
                 return;
@@ -71,6 +71,7 @@ public class Commands
         {
             string option = parameters[0];
             parameters.Remove(option);
+            option = option.ToLower();
             string path = parameters[0];
             parameters.Remove(path);
             bool pathExist = Directory.Exists(path);
@@ -82,7 +83,7 @@ public class Commands
                         List<string> files = Utilities.GetListFiles();
                         foreach (string file in files)
                         {
-                            Print.PrintMessage(file);
+                            Utilities.PrintFileName(file);
                         }
                         break;
 
@@ -90,18 +91,18 @@ public class Commands
                         List<string> directories = Utilities.GetListDirectories();
                         foreach (string directory in directories)
                         {
-                            Print.PrintMessage(directory);
+                            Utilities.PrintDirectoryName(directory);
                         }
                         break;
 
                     default:
-                        Print.PrintWarningMessage("Parameter not found");
+                        Utilities.PrintWarningMessage("Parameter not found");
                         break;
                 }
             }
             else
             {
-                Print.PrintWarningMessage("Path not found");
+                Utilities.PrintWarningMessage("Path not found");
             }
         }
     }

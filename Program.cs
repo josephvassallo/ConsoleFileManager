@@ -14,20 +14,16 @@ namespace ConsoleApplication
 
             while (next)
             {
-                Print.PrintInlineMessage(">");
+                Utilities.PrintInlineMessage(">");
 
-                #if (DEBUG)
-                    enter = "ls";
-                #else
-                    enter = Console.ReadLine();
-                #endif
+                // enter = Console.ReadLine();
                 
+                enter = "ls -f /home/joseph/VisualStudioCode/Projects/DotNetCore/ConsoleFileManager/";
+
                 if (string.IsNullOrEmpty(enter))
                 { 
                     continue;
                 }
-
-                enter = enter.ToLower();
 
                 parameters.AddRange(enter.Split(' '));
 
@@ -36,6 +32,8 @@ namespace ConsoleApplication
                 enter = parameters[0];
 
                 parameters.Remove(enter);
+
+                enter = enter.ToLower();
 
                 switch (enter)
                 {
@@ -48,7 +46,7 @@ namespace ConsoleApplication
                         break;
 
                     default:
-                        Print.PrintMessage("Command not found");
+                        Utilities.PrintMessage("Command not found");
                         break;
 
                 } // end switch

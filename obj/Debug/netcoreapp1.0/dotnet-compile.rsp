@@ -89,6 +89,6 @@
 --reference:/home/joseph/.nuget/packages/System.Xml.XDocument/4.0.11/ref/netstandard1.3/System.Xml.XDocument.dll
 /home/joseph/VisualStudioCode/Projects/DotNetCore/ConsoleFileManager/Commands.cs
 /home/joseph/VisualStudioCode/Projects/DotNetCore/ConsoleFileManager/Utilities.Files.cs
+/home/joseph/VisualStudioCode/Projects/DotNetCore/ConsoleFileManager/Utilities.Print.cs
 /home/joseph/VisualStudioCode/Projects/DotNetCore/ConsoleFileManager/Utilities.Directories.cs
 /home/joseph/VisualStudioCode/Projects/DotNetCore/ConsoleFileManager/Program.cs
-/home/joseph/VisualStudioCode/Projects/DotNetCore/ConsoleFileManager/Print.cs
