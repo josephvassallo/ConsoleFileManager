@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace ConsoleApplication
 {
@@ -16,7 +17,7 @@ namespace ConsoleApplication
                 Print.PrintInlineMessage(">");
 
                 #if (DEBUG)
-                    enter = "ls -a";
+                    enter = "ls";
                 #else
                     enter = Console.ReadLine();
                 #endif

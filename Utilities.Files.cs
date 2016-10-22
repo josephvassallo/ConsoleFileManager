@@ -8,11 +8,11 @@ public static partial class Utilities
 
         if (string.IsNullOrEmpty(path))
         {
-            files = (List<string>) Directory.EnumerateFiles(Directory.GetCurrentDirectory());
+            files.AddRange(Directory.EnumerateFiles(Directory.GetCurrentDirectory()));
         }
         else
         {
-            files = (List<string>) Directory.EnumerateFiles(path);
+            files.AddRange(Directory.EnumerateFiles(path));
         }
 
         return files;
