@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.IO;
 public class Commands
 {
-    public void Ls(List<string> parameters = null)
+    public void Ls(List<string> parameters)
     {
-        if (parameters == null)
+        if (parameters.Count == 0)
         {
             List<string> files = new List<string>(Directory.EnumerateFiles(Directory.GetCurrentDirectory()));
             List<string> directories = new List<string>(Directory.EnumerateDirectories(Directory.GetCurrentDirectory()));
