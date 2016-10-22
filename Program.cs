@@ -30,6 +30,8 @@ namespace ConsoleApplication
 
                 parameters.AddRange(enter.Split(' '));
 
+                parameters.RemoveAll(WhiteParameters);
+
                 enter = parameters[0];
 
                 parameters.Remove(enter);
@@ -47,10 +49,19 @@ namespace ConsoleApplication
                     default:
                         Print.PrintMessage("Command not found");
                         break;
-                }
+
+                } // end switch
 
                 enter = string.Empty;
-            }
+                parameters.Clear();
+
+            } // end while
+
+        } // end function Main
+
+        private static bool WhiteParameters(string parameter)
+        {
+            return string.IsNullOrEmpty(parameter);
         }
     }
 }
