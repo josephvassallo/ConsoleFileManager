@@ -6,8 +6,8 @@ public class Commands
     {
         if (parameters.Count == 0)
         {
-            List<string> files = new List<string>(Directory.EnumerateFiles(Directory.GetCurrentDirectory()));
-            List<string> directories = new List<string>(Directory.EnumerateDirectories(Directory.GetCurrentDirectory()));
+            List<string> files = Utilities.GetListFiles();
+            List<string> directories = Utilities.GetListDirectories();
             foreach (string file in files)
             {
                 Print.PrintMessage(file);
@@ -21,12 +21,14 @@ public class Commands
         if (parameters.Count == 1)
         {
             string parameter = parameters[0];
+            parameters.Remove(parameter);
+
             if (parameter.Contains("-"))
             {
                 switch (parameter)
                 {
                     case "-f":
-                        List<string> files = new List<string>(Directory.EnumerateFiles(Directory.GetCurrentDirectory()));
+                        List<string> files = Utilities.GetListFiles();
                         foreach (string file in files)
                         {
                             Print.PrintMessage(file);
@@ -34,7 +36,7 @@ public class Commands
                         break;
 
                     case "-d":
-                        List<string> directories = new List<string>(Directory.EnumerateDirectories(Directory.GetCurrentDirectory()));
+                        List<string> directories = Utilities.GetListDirectories();
                         foreach (string directory in directories)
                         {
                             Print.PrintMessage(directory);
@@ -51,8 +53,8 @@ public class Commands
             {
                 if (Directory.Exists(parameter))
                 {
-                    List<string> files = new List<string>(Directory.EnumerateFiles(parameter));
-                    List<string> directories = new List<string>(Directory.EnumerateDirectories(parameter));
+                    List<string> files = Utilities.GetListFiles(parameter);
+                    List<string> directories = Utilities.GetListDirectories(parameter);
                     foreach (string file in files)
                     {
                         Print.PrintMessage(file);
@@ -63,6 +65,43 @@ public class Commands
                     }
                 }
                 return;
+            }
+        }
+        if (parameters.Count > 1)
+        {
+            string option = parameters[0];
+            parameters.Remove(option);
+            string path = parameters[0];
+            parameters.Remove(path);
+            bool pathExist = Directory.Exists(path);
+            if (pathExist)
+            {
+                switch (option)
+                {
+                    case "-f":
+                        List<string> files = Utilities.GetListFiles();
+                        foreach (string file in files)
+                        {
+                            Print.PrintMessage(file);
+                        }
+                        break;
+
+                    case "-d":
+                        List<string> directories = Utilities.GetListDirectories();
+                        foreach (string directory in directories)
+                        {
+                            Print.PrintMessage(directory);
+                        }
+                        break;
+
+                    default:
+                        Print.PrintWarningMessage("Parameter not found");
+                        break;
+                }
+            }
+            else
+            {
+                Print.PrintWarningMessage("Path not found");
             }
         }
     }
