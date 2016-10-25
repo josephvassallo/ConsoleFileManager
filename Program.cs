@@ -16,9 +16,7 @@ namespace ConsoleApplication
             {
                 Utilities.PrintInlineMessage(">");
 
-                // enter = Console.ReadLine();
-                
-                enter = "ls -f /home/joseph/VisualStudioCode/Projects/DotNetCore/ConsoleFileManager/";
+                enter = Console.ReadLine();
 
                 if (string.IsNullOrEmpty(enter))
                 { 
@@ -41,6 +39,10 @@ namespace ConsoleApplication
                         commands.Ls(parameters);
                         break;
 
+                    case "makefile":
+                        commands.MakeFile(parameters);    
+                        break;
+                        
                     case "exit":
                         next = false;
                         break;
