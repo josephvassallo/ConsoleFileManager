@@ -106,7 +106,6 @@ public class Commands
             }
         }
     }
-
     public void MakeFile(List<string> parameters)
     {
         if (parameters.Count == 0)
@@ -139,6 +138,61 @@ public class Commands
                 
 
             File.Create(path);
+        }
+    }
+
+    public  string Cd(List<string> parameters, string currentDirectory)
+    {
+        if (parameters.Count == 0)
+        {
+            return currentDirectory;
+        }
+        if (parameters.Count == 1)
+        {
+            string directory = parameters[0];
+            parameters.Remove(directory);
+
+            // navigate to parent directory
+            if (directory.Equals(".."))
+            {
+                DirectoryInfo parentDirectory = Directory.GetParent(currentDirectory);
+                if (parentDirectory == null)
+                {
+                    Utilities.PrintWarningMessage("No parent for the current directory");
+                    return currentDirectory;
+                }
+                return parentDirectory.FullName;
+            }
+            // navigate to absolute path
+            if (directory.StartsWith("/"))
+            {
+                if (directory.EndsWith("/"))
+                {
+                    directory = directory.Remove(directory.LastIndexOf('/'));
+                }
+                if (Directory.Exists(directory))
+                {
+                    return directory;
+                }
+                else
+                {
+                    Utilities.PrintErrorMessage("Path not found");
+                    return currentDirectory;
+                }
+            }
+            // navigate to relative path
+            string path = string.Format("{0}/{1}", currentDirectory, directory);
+            if (Directory.Exists(path))
+            {
+                return path;
+            } 
+            Utilities.PrintErrorMessage("Path not found");
+            return currentDirectory;
+        }
+        else
+        {
+            Utilities.PrintErrorMessage("Path not found");
+            return currentDirectory;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
+using System.IO;
 
 namespace ConsoleApplication
 {
@@ -7,14 +8,15 @@ namespace ConsoleApplication
     {
         public static void Main(string[] args)
         {
+            string currentDirectory = Directory.GetCurrentDirectory();
             Commands commands = new Commands();
             List<string> parameters = new List<string>();
             bool next = true;
             string enter = string.Empty;    
-
+            
             while (next)
             {
-                Utilities.PrintInlineMessage(">");
+                Utilities.PrintInlineMessage(string.Format("{0} > " ,currentDirectory));
 
                 enter = Console.ReadLine();
 
@@ -43,6 +45,10 @@ namespace ConsoleApplication
                         commands.MakeFile(parameters);    
                         break;
                         
+                    case "cd":
+                        currentDirectory = commands.Cd(parameters, currentDirectory);
+                        break;
+
                     case "exit":
                         next = false;
                         break;
