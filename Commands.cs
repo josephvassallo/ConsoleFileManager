@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using System.IO;
 public class Commands
 {
-    public void Ls(List<string> parameters)
+    public void Ls(List<string> parameters, string currentDirectory)
     {
         if (parameters.Count == 0)
         {
-            List<string> files = Utilities.GetListFiles();
-            List<string> directories = Utilities.GetListDirectories();
+            List<string> files = Utilities.GetListFiles(currentDirectory);
+            List<string> directories = Utilities.GetListDirectories(currentDirectory);
             foreach (string file in files)
             {
                 Utilities.PrintFileName(file);
@@ -28,7 +28,7 @@ public class Commands
                 switch (parameter)
                 {
                     case "-f":
-                        List<string> files = Utilities.GetListFiles();
+                        List<string> files = Utilities.GetListFiles(currentDirectory);
                         foreach (string file in files)
                         {
                             Utilities.PrintFileName(file);
@@ -36,7 +36,7 @@ public class Commands
                         break;
 
                     case "-d":
-                        List<string> directories = Utilities.GetListDirectories();
+                        List<string> directories = Utilities.GetListDirectories(currentDirectory);
                         foreach (string directory in directories)
                         {
                             Utilities.PrintDirectoryName(directory);
@@ -80,7 +80,7 @@ public class Commands
                 switch (option)
                 {
                     case "-f":
-                        List<string> files = Utilities.GetListFiles();
+                        List<string> files = Utilities.GetListFiles(path);
                         foreach (string file in files)
                         {
                             Utilities.PrintFileName(file);
@@ -88,7 +88,7 @@ public class Commands
                         break;
 
                     case "-d":
-                        List<string> directories = Utilities.GetListDirectories();
+                        List<string> directories = Utilities.GetListDirectories(path);
                         foreach (string directory in directories)
                         {
                             Utilities.PrintDirectoryName(directory);

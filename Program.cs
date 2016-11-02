@@ -19,7 +19,6 @@ namespace ConsoleApplication
                 Utilities.PrintInlineMessage(string.Format("{0} > " ,currentDirectory));
 
                 enter = Console.ReadLine();
-                // enter = "";
 
                 if (string.IsNullOrEmpty(enter))
                 { 
@@ -39,7 +38,7 @@ namespace ConsoleApplication
                 switch (enter)
                 {
                     case "ls":
-                        commands.Ls(parameters);
+                        commands.Ls(parameters, currentDirectory);
                         break;
 
                     case "makefile":

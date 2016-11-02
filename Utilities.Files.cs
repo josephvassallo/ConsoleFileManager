@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 public static partial class Utilities
 {
-    public static List<string> GetListFiles(string path = null)
+    public static List<string> GetListFiles(string path)
     {
         List<string> files = new List<string>();
 
