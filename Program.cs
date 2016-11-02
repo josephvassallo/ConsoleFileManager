@@ -19,6 +19,7 @@ namespace ConsoleApplication
                 Utilities.PrintInlineMessage(string.Format("{0} > " ,currentDirectory));
 
                 enter = Console.ReadLine();
+                // enter = "";
 
                 if (string.IsNullOrEmpty(enter))
                 { 
@@ -53,6 +54,9 @@ namespace ConsoleApplication
                         commands.Rm(parameters, currentDirectory);
                         break;
 
+                    case "rmdir":
+                        commands.RmDir(parameters, currentDirectory);
+                        break;
 
                     case "exit":
                         next = false;

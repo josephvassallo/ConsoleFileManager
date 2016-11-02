@@ -17,4 +17,20 @@ public static partial class Utilities
 
         return directories;
     }
+
+    public static string GetDirectoryFullPath(string directory, string currentDirectory)
+    {
+        string path = string.Empty;
+
+        if (directory.StartsWith("/"))
+        {
+            path = directory;
+        }
+        else
+        {
+            path = string.Format("{0}/{1}", currentDirectory, directory);
+        }
+
+        return path;
+    }
 }

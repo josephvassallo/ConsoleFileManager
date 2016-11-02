@@ -223,4 +223,53 @@ public class Commands
             }
         }
     }
+
+    public void RmDir(List<string> parameters, string currentDirectory)
+    {
+        if (parameters.Count == 0)
+        {
+            Utilities.PrintWarningMessage("Missing directory name");
+            return;
+        }
+        if (parameters.Count == 1)
+        {
+            string directory = parameters[0];
+            parameters.Remove(directory);
+            directory = Utilities.GetDirectoryFullPath(directory, currentDirectory);
+            if (Directory.Exists(directory))
+            {
+                try
+                {
+                    Directory.Delete(directory);
+                }
+                catch(IOException)
+                {
+                    Utilities.PrintErrorMessage("The directory is not empty");
+                    return;
+                }
+            }
+        }
+        if (parameters.Count > 1)
+        {
+            string option = parameters[0];
+            parameters.Remove(option);
+            string directory = parameters[0];
+            parameters.Remove(directory);
+            directory = Utilities.GetDirectoryFullPath(directory, currentDirectory);
+            switch (option)
+            {
+                case "-r":
+                    if (Directory.Exists(directory))
+                    {
+                        Directory.Delete(directory, true);
+                    }
+                    break;
+                
+                default:
+                    string message = string.Format("Option '{0}' not found", option);
+                    Utilities.PrintWarningMessage(message);
+                    break;
+            }
+        }
+    }
 }
