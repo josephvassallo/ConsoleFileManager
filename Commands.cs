@@ -141,7 +141,7 @@ public class Commands
         }
     }
 
-    public  string Cd(List<string> parameters, string currentDirectory)
+    public string Cd(List<string> parameters, string currentDirectory)
     {
         if (parameters.Count == 0)
         {
@@ -193,6 +193,24 @@ public class Commands
         {
             Utilities.PrintErrorMessage("Path not found");
             return currentDirectory;
+        }
+    }
+
+    public void Rm(List<string> parameters)
+    {
+        if (parameters.Count == 0)
+        {
+            return; 
+        }
+        else
+        {
+            foreach (string item in parameters)
+            {
+                if (File.Exists(item))
+                {
+                    File.Delete(item);
+                }
+            }
         }
     }
 }

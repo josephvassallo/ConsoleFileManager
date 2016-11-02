@@ -49,6 +49,11 @@ namespace ConsoleApplication
                         currentDirectory = commands.Cd(parameters, currentDirectory);
                         break;
 
+                    case "rm":
+                        commands.Rm(parameters);
+                        break;
+
+
                     case "exit":
                         next = false;
                         break;
