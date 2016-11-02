@@ -196,7 +196,7 @@ public class Commands
         }
     }
 
-    public void Rm(List<string> parameters)
+    public void Rm(List<string> parameters, string currentDirectory)
     {
         if (parameters.Count == 0)
         {
@@ -206,9 +206,19 @@ public class Commands
         {
             foreach (string item in parameters)
             {
-                if (File.Exists(item))
+                string filePath = string.Empty;
+
+                if (!item.StartsWith("/"))
                 {
-                    File.Delete(item);
+                    filePath = string.Format("{0}/{1}", currentDirectory, item);
+                }
+                if (string.IsNullOrEmpty(filePath))
+                {
+                    filePath = item;
+                }
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
                 }
             }
         }

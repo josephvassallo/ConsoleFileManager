@@ -50,7 +50,7 @@ namespace ConsoleApplication
                         break;
 
                     case "rm":
-                        commands.Rm(parameters);
+                        commands.Rm(parameters, currentDirectory);
                         break;
 
 
