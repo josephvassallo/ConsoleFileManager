@@ -106,41 +106,7 @@ public class Commands
             }
         }
     }
-    public void MakeFile(List<string> parameters)
-    {
-        if (parameters.Count == 0)
-        {
-            bool exist = false;
-            int contatore = 0;
-            string fileName = string.Empty;
-            do
-            {
-                if (contatore == 0)
-                {
-                    fileName = "newFile";
-                }
-                else
-                {
-                    fileName = string.Format("newFile({0})", contatore);
-                }
-                exist = File.Exists(fileName);
-                contatore++;
-            } while (exist);
-
-            File.Create(fileName);
-            return;
-        }
-        if (parameters.Count == 1)
-        {
-            string path = parameters[0];
-            parameters.Remove(path);
-            
-                
-
-            File.Create(path);
-        }
-    }
-
+   
     public string Cd(List<string> parameters, string currentDirectory)
     {
         if (parameters.Count == 0)

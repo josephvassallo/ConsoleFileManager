@@ -40,10 +40,6 @@ namespace ConsoleApplication
                     case "ls":
                         commands.Ls(parameters, currentDirectory);
                         break;
-
-                    case "makefile":
-                        commands.MakeFile(parameters);    
-                        break;
                         
                     case "cd":
                         currentDirectory = commands.Cd(parameters, currentDirectory);
