@@ -2,16 +2,20 @@ using System.Collections.Generic;
 using System.IO;
 public class Commands
 {
+    // show the files and the directories of a specific directory
     public void Ls(List<string> parameters, string currentDirectory)
     {
+        // show all files and directories
         if (parameters.Count == 0)
         {
             List<string> files = Utilities.GetListFiles(currentDirectory);
             List<string> directories = Utilities.GetListDirectories(currentDirectory);
+            // print the list of files
             foreach (string file in files)
             {
                 Utilities.PrintFileName(file);
             }
+            // print the list of directories
             foreach (string directory in directories)
             {
                 Utilities.PrintDirectoryName(directory);
@@ -27,6 +31,7 @@ public class Commands
             {
                 switch (parameter)
                 {
+                    // show only the files
                     case "-f":
                         List<string> files = Utilities.GetListFiles(currentDirectory);
                         foreach (string file in files)
@@ -34,7 +39,7 @@ public class Commands
                             Utilities.PrintFileName(file);
                         }
                         break;
-
+                    // show only the directories
                     case "-d":
                         List<string> directories = Utilities.GetListDirectories(currentDirectory);
                         foreach (string directory in directories)
@@ -49,8 +54,10 @@ public class Commands
                 }
                 return;
             }
+            // show all the content of a specific directory
             if (parameter.Contains("/"))
             {
+                // check if the directory exist
                 if (Directory.Exists(parameter))
                 {
                     List<string> files = Utilities.GetListFiles(parameter);
@@ -67,6 +74,7 @@ public class Commands
                 return;
             }
         }
+        // show the files or the directory of a specific directory
         if (parameters.Count > 1)
         {
             string option = parameters[0];
@@ -79,6 +87,7 @@ public class Commands
             {
                 switch (option)
                 {
+                    // show only the files
                     case "-f":
                         List<string> files = Utilities.GetListFiles(path);
                         foreach (string file in files)
@@ -86,7 +95,7 @@ public class Commands
                             Utilities.PrintFileName(file);
                         }
                         break;
-
+                    // show only the directory
                     case "-d":
                         List<string> directories = Utilities.GetListDirectories(path);
                         foreach (string directory in directories)
@@ -106,7 +115,7 @@ public class Commands
             }
         }
     }
-   
+    // change the working directory
     public string Cd(List<string> parameters, string currentDirectory)
     {
         if (parameters.Count == 0)
@@ -161,15 +170,17 @@ public class Commands
             return currentDirectory;
         }
     }
-
+    // remove one or more files from a directory
     public void Rm(List<string> parameters, string currentDirectory)
     {
+        // nothing to remove
         if (parameters.Count == 0)
         {
             return; 
         }
         else
         {
+            // iterate the list of input files
             foreach (string item in parameters)
             {
                 string filePath = string.Empty;
@@ -182,16 +193,19 @@ public class Commands
                 {
                     filePath = item;
                 }
+                // check if the file exist
                 if (File.Exists(filePath))
                 {
+                    // delete the file
                     File.Delete(filePath);
                 }
             }
         }
     }
-
+    // remove a directory
     public void RmDir(List<string> parameters, string currentDirectory)
     {
+        // nothing to remove
         if (parameters.Count == 0)
         {
             Utilities.PrintWarningMessage("Missing directory name");
@@ -202,12 +216,15 @@ public class Commands
             string directory = parameters[0];
             parameters.Remove(directory);
             directory = Utilities.GetDirectoryFullPath(directory, currentDirectory);
+            // check if the directory exist
             if (Directory.Exists(directory))
             {
                 try
                 {
+                    // delete the directory only if its empty
                     Directory.Delete(directory);
                 }
+                // throwed if the directory is not empty
                 catch(IOException)
                 {
                     Utilities.PrintErrorMessage("The directory is not empty");
@@ -224,6 +241,7 @@ public class Commands
             directory = Utilities.GetDirectoryFullPath(directory, currentDirectory);
             switch (option)
             {
+                // delete the directory and all its content
                 case "-r":
                     if (Directory.Exists(directory))
                     {

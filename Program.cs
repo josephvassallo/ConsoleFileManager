@@ -37,22 +37,23 @@ namespace ConsoleApplication
 
                 switch (enter)
                 {
+                    // show the list of files or directories
                     case "ls":
                         commands.Ls(parameters, currentDirectory);
                         break;
-                        
+                    // change the working directory
                     case "cd":
                         currentDirectory = commands.Cd(parameters, currentDirectory);
                         break;
-
+                    // remove a file
                     case "rm":
                         commands.Rm(parameters, currentDirectory);
                         break;
-
+                    // remove a directory
                     case "rmdir":
                         commands.RmDir(parameters, currentDirectory);
                         break;
-
+                    // end the program
                     case "exit":
                         next = false;
                         break;
