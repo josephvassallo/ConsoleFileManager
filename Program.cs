@@ -18,8 +18,9 @@ namespace ConsoleApplication
             {
                 Utilities.PrintInlineMessage(string.Format("{0} > " ,currentDirectory));
 
-                enter = Console.ReadLine();
-                
+                // enter = Console.ReadLine();
+                enter = "mkdir ciao";
+
                 if (string.IsNullOrEmpty(enter))
                 { 
                     continue;
@@ -53,11 +54,14 @@ namespace ConsoleApplication
                     case "rmdir":
                         commands.RmDir(parameters, currentDirectory);
                         break;
+                    // create a new directory
+                    case "mkdir":
+                        commands.MkDir(parameters, currentDirectory);
+                        break;
                     // end the program
                     case "exit":
                         next = false;
                         break;
-
                     default:
                         Utilities.PrintMessage("Command not found");
                         break;

@@ -255,4 +255,19 @@ public class Commands
             }
         }
     }
+
+    public void MkDir(List<string> parameters, string currentDirectory)
+    {
+        string newDirectory = parameters[0];
+        parameters.Remove(newDirectory);
+        newDirectory = string.Format("{0}/{1}", currentDirectory, newDirectory);
+        if (Directory.Exists(newDirectory))
+        {
+            Directory.CreateDirectory(newDirectory);
+        }
+        else
+        {
+            Utilities.PrintErrorMessage("Directory already exist");
+        }
+    }
 }
