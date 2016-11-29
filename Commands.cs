@@ -116,11 +116,12 @@ public class Commands
         }
     }
     // change the working directory
-    public string Cd(List<string> parameters, string currentDirectory)
+    public void Cd(List<string> parameters, ref string currentDirectory)
     {
         if (parameters.Count == 0)
         {
-            return currentDirectory;
+            Utilities.PrintErrorMessage("Missing path");
+            return;
         }
         if (parameters.Count == 1)
         {
@@ -134,9 +135,9 @@ public class Commands
                 if (parentDirectory == null)
                 {
                     Utilities.PrintWarningMessage("No parent for the current directory");
-                    return currentDirectory;
                 }
-                return parentDirectory.FullName;
+                currentDirectory = parentDirectory.FullName;
+                return;
             }
             // navigate to absolute path
             if (directory.StartsWith("/"))
@@ -147,27 +148,25 @@ public class Commands
                 }
                 if (Directory.Exists(directory))
                 {
-                    return directory;
+                    currentDirectory = directory;
                 }
                 else
                 {
                     Utilities.PrintErrorMessage("Path not found");
-                    return currentDirectory;
+                    return;
                 }
             }
             // navigate to relative path
             string path = string.Format("{0}/{1}", currentDirectory, directory);
             if (Directory.Exists(path))
             {
-                return path;
+                currentDirectory = path;
             } 
-            Utilities.PrintErrorMessage("Path not found");
-            return currentDirectory;
-        }
-        else
-        {
-            Utilities.PrintErrorMessage("Path not found");
-            return currentDirectory;
+            else
+            {
+                Utilities.PrintErrorMessage("Path not found");
+                return;
+            }
         }
     }
     // remove one or more files from a directory

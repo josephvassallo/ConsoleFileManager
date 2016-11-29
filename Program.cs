@@ -19,7 +19,7 @@ namespace ConsoleApplication
                 Utilities.PrintInlineMessage(string.Format("{0} > " ,currentDirectory));
 
                 enter = Console.ReadLine();
-
+                
                 if (string.IsNullOrEmpty(enter))
                 { 
                     continue;
@@ -43,7 +43,7 @@ namespace ConsoleApplication
                         break;
                     // change the working directory
                     case "cd":
-                        currentDirectory = commands.Cd(parameters, currentDirectory);
+                        commands.Cd(parameters, ref currentDirectory);
                         break;
                     // remove a file
                     case "rm":
