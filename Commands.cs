@@ -136,7 +136,10 @@ public class Commands
                 {
                     Utilities.PrintWarningMessage("No parent for the current directory");
                 }
-                currentDirectory = parentDirectory.FullName;
+                else
+                {
+                    currentDirectory = parentDirectory.FullName;
+                }
                 return;
             }
             // navigate to absolute path
