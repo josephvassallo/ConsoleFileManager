@@ -155,6 +155,7 @@ public class Commands
                     Utilities.PrintErrorMessage("Path not found");
                     return;
                 }
+                return;
             }
             // navigate to relative path
             string path = string.Format("{0}/{1}", currentDirectory, directory);

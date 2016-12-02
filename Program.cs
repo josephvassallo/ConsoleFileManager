@@ -18,8 +18,7 @@ namespace ConsoleApplication
             {
                 Utilities.PrintInlineMessage(string.Format("{0} > " ,currentDirectory));
 
-                // enter = Console.ReadLine();
-                enter = "mkdir ciao";
+                enter = Console.ReadLine();
 
                 if (string.IsNullOrEmpty(enter))
                 { 
